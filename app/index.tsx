@@ -1,23 +1,16 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import HomeScreen from '@Screens/home'
+import { NativeBaseProvider, StatusBar } from 'native-base'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Root = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaProvider>
+        <HomeScreen />
+      </SafeAreaProvider>
+    </NativeBaseProvider>
   )
 }
 
 export default Root
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-})
-
