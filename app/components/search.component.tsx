@@ -1,22 +1,27 @@
 import useApi from "@Hooks/api.hook"
 import useIcon from "@Hooks/icon.hook"
+import { clearInputValue, setInputValue } from "@Slice/form.slice"
+import { setSearchResult } from "@Slice/search.slice"
+import { RootType } from "@Types/reducer"
 import { Icon, Input, KeyboardAvoidingView, VStack } from "native-base"
-import { useState } from "react"
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native"
+import { useDispatch, useSelector } from "react-redux"
 
-const SearchBar = () => {
+export const SearchBar = () => {
   const icon = useIcon()
   const api = useApi()
-  const [searchValue, setSearchValue] = useState('')
+  const dispatch = useDispatch()
+  const inputValue = useSelector((state: RootType) => state.Form.inputValue)
+  const search = useSelector((state: RootType) => state.Search)
 
   const handleSearchSubmit = async () => {
+    if (!inputValue) return
     try {
-      const { data, refresh } = api.useFetchSearch(searchValue)
-      console.log(data)
+      const data: SearchResult = await api.useFetchSearch(inputValue)
+      dispatch(setSearchResult(data))
     } catch (error) {
       return
     }
-    setSearchValue('')
   }
 
   return (
@@ -32,6 +37,7 @@ const SearchBar = () => {
       >
         <VStack alignSelf="center" width="100%" maxW={300}>
           <Input
+            value={inputValue}
             placeholder="找電影"
             width="100%"
             borderRadius="5"
@@ -43,16 +49,17 @@ const SearchBar = () => {
               <Icon m="2" ml="3" size="6" color="gray.400" as={icon.searchIcon()} />
             }
             InputRightElement={
-              <Icon m="2" mr="3" size="6" color="gray.400" as={icon.micIcon()} />
+              inputValue
+                ? <Icon m="2" mr="3" size="6" as={icon.cancelIcon('gray.400')}
+                  onPress={() => dispatch(clearInputValue())} />
+                : undefined
             }
             returnKeyType="search"
             onSubmitEditing={handleSearchSubmit}
-            onChangeText={setSearchValue}
+            onChangeText={text => dispatch(setInputValue(text))}
           />
         </VStack >
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   )
 }
-
-export default SearchBar

@@ -22,7 +22,9 @@ module.exports = function (api) {
           "@Path": "./app/constants/path",
           "@Utils": "./app/utils",
           "@Screens": "./app/screens",
-          "@Navigation": "./app/navigation"
+          "@Navigation": "./app/navigation",
+          "@Store": "./app/store",
+          "@Slice": "./app/slice"
         },
         "extensions": [
           ".js",

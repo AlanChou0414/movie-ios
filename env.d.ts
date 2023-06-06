@@ -3,4 +3,5 @@ declare module '@env' {
   export const AUTH_TOKEN: string;
   export const HOST: string;
   export const VERSION: string;
+  export const IMG: string;
 }
