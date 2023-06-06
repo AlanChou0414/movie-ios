@@ -13,7 +13,7 @@ const useIcon = () => {
   return {
     cancelIcon: (color: string) => icon(MaterialIcons, 'cancel', color, 5),
     searchIcon: () => icon(MaterialIcons, 'search'),
-    micIcon: () => icon(MaterialIcons, 'mic')
+    micIcon: () => icon(MaterialIcons, 'mic'),
   }
 }
 

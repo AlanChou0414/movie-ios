@@ -1,0 +1,3 @@
+type InputType = {
+  inputValue: string;
+}

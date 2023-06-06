@@ -1,4 +1,4 @@
-import SearchBar from '@Components/search.component'
+import { SearchBar } from '@Components/search.component'
 import useAlert from '@Hooks/alert.hook'
 import { styles } from '@Styles/styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
