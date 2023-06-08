@@ -22,7 +22,7 @@ export const ScrollList = ({ data }: any) => {
     <FlatList
       data={list?.results}
       renderItem={({ item }) => (
-        <Box alignItems="center" mt="5" rounded="30" shadow="9">
+        <Box alignItems="center" mt="5" rounded="30" shadow="3">
           <ImageBackground source={{
             uri: `${item.backdrop_path ? IMG + item.backdrop_path : 'https://fakeimg.pl/300x200/CCC'}`
           }}
