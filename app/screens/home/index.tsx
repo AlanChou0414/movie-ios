@@ -22,7 +22,7 @@ const PageMain = () => {
       setPopular(data)
     }
     fetchData()
-  }, [])
+  }, [search])
 
   if (!popular) return <Loading />
 
