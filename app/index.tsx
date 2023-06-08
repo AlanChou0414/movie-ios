@@ -7,8 +7,8 @@ import { Provider } from 'react-redux'
 const Root = () => {
   return (
     <Provider store={store}>
+      <StatusBar barStyle="dark-content" />
       <NativeBaseProvider>
-        <StatusBar barStyle="dark-content" />
         <SafeAreaProvider>
           <HomeScreen />
         </SafeAreaProvider>

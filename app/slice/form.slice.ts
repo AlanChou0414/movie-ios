@@ -11,7 +11,7 @@ const FormSlice = createSlice({
     setInputValue: (state, action) => {
       state.inputValue = action.payload
     },
-    clearInputValue: (state) => {
+    clearInputValue: () => {
       return initialState
     }
   }

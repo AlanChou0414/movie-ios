@@ -18,12 +18,13 @@ const useApi = () => {
         Authorization: `Bearer ${AUTH_TOKEN}`
       }
     }).then(res => res.data)
+
     return data
   }
 
   return {
     useFetchSearch: (params: string) => useFetchData(`${URL}search/multi`, params),
-    useFetchPopular: (page: number) => useFetchData(`${URL}movie/popular`, undefined, page)
+    useFetchPopular: () => useFetchData(`${URL}movie/popular`, undefined)
   }
 }
 
