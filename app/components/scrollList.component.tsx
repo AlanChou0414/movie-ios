@@ -44,7 +44,6 @@ export const ScrollList = ({ data }: any) => {
         </Box>
       )}
       keyExtractor={item => item?.id.toString()}
-      mb="20"
       showsVerticalScrollIndicator={false}
     />
   )
