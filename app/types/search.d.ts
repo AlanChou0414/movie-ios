@@ -1,9 +1,9 @@
-interface SearchResult {
+interface ResultProps {
   page: string;
   results: {
     adult?: boolean;
     backdrop_path?: string;
-    id?: number;
+    id: number;
     name?: string;
     title?: string;
     original_name?: string;
