@@ -1,4 +1,4 @@
-import { MaterialIcons } from '@expo/vector-icons'
+import { AntDesign, Feather, MaterialIcons } from '@expo/vector-icons'
 import { Icon } from "native-base"
 
 const useIcon = () => {
@@ -12,8 +12,11 @@ const useIcon = () => {
 
   return {
     cancelIcon: (color: string) => icon(MaterialIcons, 'cancel', color, 5),
-    searchIcon: () => icon(MaterialIcons, 'search'),
+    searchIcon: (color?: string, size?: number) => icon(MaterialIcons, 'search', color, size),
     micIcon: () => icon(MaterialIcons, 'mic'),
+    homeIcon: () => icon(AntDesign, 'home', '#fff', 8),
+    tabSearchIcon: () => icon(Feather, 'search', '#fff', 8),
+    memberIcon: () => icon(AntDesign, 'user', '#fff', 8)
   }
 }
 

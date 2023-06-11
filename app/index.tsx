@@ -1,5 +1,6 @@
-import HomeScreen from '@Screens/home'
+import TabBar from '@Navigation/tabbar'
 import store from '@Store/configureStore'
+import { NavigationContainer } from '@react-navigation/native'
 import { NativeBaseProvider, StatusBar } from 'native-base'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
@@ -7,11 +8,13 @@ import { Provider } from 'react-redux'
 const Root = () => {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="dark-content" />
       <NativeBaseProvider>
-        <SafeAreaProvider>
-          <HomeScreen />
-        </SafeAreaProvider>
+        <StatusBar barStyle="dark-content" />
+        <NavigationContainer>
+          <SafeAreaProvider>
+            <TabBar />
+          </SafeAreaProvider>
+        </NavigationContainer>
       </NativeBaseProvider>
     </Provider>
   )
