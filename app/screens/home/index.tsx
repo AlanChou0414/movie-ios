@@ -1,5 +1,6 @@
 import { Loading } from '@Components/loading.component'
 import { ScrollList } from '@Components/scrollList.component'
+import { SearchBar } from '@Components/search.component'
 import useAlert from '@Hooks/alert.hook'
 import useApi from '@Hooks/api.hook'
 import { styles } from '@Styles/styles'
@@ -17,7 +18,7 @@ const PageMain = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api.useFetchPopular()
+      const data = await api.useFetchSearchAll()
       setPopular(data)
     }
     fetchData()
@@ -27,12 +28,15 @@ const PageMain = () => {
 
   return (
     <SafeAreaView style={styles.flex}>
+      <SearchBar />
       <Center>
-        <Box alignItems="center" >
+        <Box alignItems="center">
           <Heading size="xl" mt="3" letterSpacing="3">
-            熱門電影
+            {!search.page && '熱門電影'}
           </Heading>
-          <ScrollList data={popular} />
+          {
+            <ScrollList data={search.page ? search : popular} />
+          }
         </Box>
       </Center>
     </SafeAreaView >
