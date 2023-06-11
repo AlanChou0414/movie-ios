@@ -1,12 +1,13 @@
 import { styles } from "@Styles/styles"
 import { IMG } from "@env"
 import { Box, FlatList, Heading } from "native-base"
-import { useEffect, useState } from "react"
-import { ImageBackground } from "react-native"
+import { useCallback, useEffect, useState } from "react"
+import { ImageBackground, RefreshControl } from "react-native"
 import { Loading } from "./loading.component"
 
 export const ScrollList = ({ data }: any) => {
-  const [list, setList] = useState<ResultProps>();
+  const [list, setList] = useState<ResultProps>()
+  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +17,15 @@ export const ScrollList = ({ data }: any) => {
     fetchData()
   }, [data])
 
-  if (!list) return <Loading />
+  //TODO: refresh to get new data
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 2000)
+  }, [])
+
+  if (!list?.results) return <Loading />
 
   return (
     <FlatList
@@ -45,6 +54,7 @@ export const ScrollList = ({ data }: any) => {
       )}
       keyExtractor={item => item?.id.toString()}
       showsVerticalScrollIndicator={false}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     />
   )
 }
