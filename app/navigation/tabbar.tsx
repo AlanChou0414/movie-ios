@@ -2,7 +2,6 @@ import { TabBarButton } from "@Components/tabbar.component"
 import useIcon from "@Hooks/icon.hook"
 import HomeScreen from '@Screens/home'
 import MemberScreen from '@Screens/member'
-import SearchScreen from '@Screens/search'
 import { styles } from "@Styles/styles"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
@@ -31,7 +30,7 @@ const TabBar = () => {
           )
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Search"
         component={SearchScreen}
         options={{
@@ -40,7 +39,7 @@ const TabBar = () => {
             <TabBarButton {...props} />
           )
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Member"
         component={MemberScreen}

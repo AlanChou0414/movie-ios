@@ -24,7 +24,8 @@ const useApi = () => {
 
   return {
     useFetchSearch: (params: string) => useFetchData(`${URL}search/multi`, params),
-    useFetchPopular: () => useFetchData(`${URL}movie/popular`, undefined)
+    useFetchPopular: () => useFetchData(`${URL}movie/popular`, undefined),
+    useFetchSearchAll: () => useFetchData(`${URL}trending/all/week`)
   }
 }
 

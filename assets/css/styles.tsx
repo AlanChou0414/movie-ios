@@ -33,5 +33,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     top: 10
-  }
+  },
 })

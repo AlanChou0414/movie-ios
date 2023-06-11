@@ -1,3 +1,4 @@
+import useAlert from "@Hooks/alert.hook"
 import useApi from "@Hooks/api.hook"
 import useIcon from "@Hooks/icon.hook"
 import { clearInputValue, setInputValue } from "@Slice/form.slice"
@@ -10,12 +11,14 @@ import { useDispatch, useSelector } from "react-redux"
 export const SearchBar = () => {
   const icon = useIcon()
   const api = useApi()
+  const alert = useAlert()
   const dispatch = useDispatch()
   const inputValue = useSelector((state: RootType) => state.Form.inputValue)
 
   const handleSearchSubmit = async () => {
-    if (!inputValue) return
+    if (!inputValue) return alert.error('請輸入搜尋')
     try {
+      alert.success('搜尋中...')
       const data = await api.useFetchSearch(inputValue)
       dispatch(setSearchResult(data))
     } catch (error) {
@@ -29,7 +32,7 @@ export const SearchBar = () => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} >
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View px="10">
         <Input
           value={inputValue}
