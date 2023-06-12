@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 const PageMain = () => {
   const api = useApi()
   const search = useSelector((state: RootType) => state.Search)
+  const inputValue = useSelector((state: RootType) => state.Form)
   const [allSearch, setAllSearch] = useState<ResultProps>()
 
   useEffect(() => {
@@ -21,16 +22,23 @@ const PageMain = () => {
     fetchData()
   }, [search])
 
+
   return (
     <SafeAreaView style={styles.flex}>
       <SearchBar />
       <Center>
         <Box alignItems="center">
-          <Heading size="xl" mt="3" letterSpacing="3">
-            熱門搜尋
-          </Heading>
           {
-            <ScrollList data={search.page ? search : allSearch} />
+            search.page
+              ? <ScrollList data={search} />
+              : (
+                <>
+                  <Heading size="xl" mt="3" letterSpacing="3">
+                    熱門搜尋
+                  </Heading>
+                  <ScrollList data={allSearch} />
+                </>
+              )
           }
         </Box>
       </Center>

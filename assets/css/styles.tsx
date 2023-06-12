@@ -6,8 +6,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'none'
   },
   backImg: {
-    width: 300,
-    height: 200,
+    width: 250,
+    height: 180,
     position: "relative",
     borderRadius: 20,
     overflow: "hidden",
@@ -15,10 +15,10 @@ export const styles = StyleSheet.create({
   tabBarStyle: {
     position: 'absolute',
     bottom: 25,
-    left: 25,
-    right: 25,
+    left: 30,
+    right: 30,
     backgroundColor: "#262626cc",
-    borderRadius: 15,
+    borderRadius: 25,
     height: 70,
     shadowColor: "#000000",
     shadowRadius: 10,
@@ -32,6 +32,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 10
+    top: 12
   },
 })

@@ -4,9 +4,11 @@ import useIcon from "@Hooks/icon.hook"
 import { clearInputValue, setInputValue } from "@Slice/form.slice"
 import { removeSearchResult, setSearchResult } from "@Slice/search.slice"
 import { RootType } from "@Types/reducer"
-import { Icon, Input, View } from "native-base"
-import { Keyboard, TouchableWithoutFeedback } from "react-native"
+import { Center, Icon, Input, VStack, View } from "native-base"
+import { useState } from "react"
+import { ActivityIndicator, Keyboard, TouchableWithoutFeedback } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
+import { ScrollList } from "./scrollList.component"
 
 export const SearchBar = () => {
   const icon = useIcon()
@@ -14,19 +16,25 @@ export const SearchBar = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
   const inputValue = useSelector((state: RootType) => state.Form.inputValue)
+  const [isSearching, setIsSearching] = useState(false)
 
-  const handleSearchSubmit = async () => {
-    if (!inputValue) return alert.error('請輸入搜尋')
+  const handleSearch = async () => {
+    const value = inputValue.trim()
+    if (!value) {
+      alert.error('請輸入搜尋文字')
+      return dispatch(removeSearchResult())
+    }
     try {
-      alert.success('搜尋中...')
-      const data = await api.useFetchSearch(inputValue)
+      setIsSearching(true)
+      const data = await api.useFetchSearch(value)
       dispatch(setSearchResult(data))
     } catch (error) {
       return
     }
+    setIsSearching(false)
   }
 
-  const handleSearchRemove = () => {
+  const handleRemove = () => {
     dispatch(clearInputValue())
     dispatch(removeSearchResult())
   }
@@ -43,18 +51,37 @@ export const SearchBar = () => {
           fontSize="16"
           letterSpacing="md"
           InputLeftElement={
-            <Icon m="2" ml="3" size="6" color="gray.400"
-              as={icon.searchIcon()} />
+            isSearching
+              ? (
+                <View m="2" ml="3" size="6">
+                  <ActivityIndicator size="small" />
+                </View>
+              )
+              : <Icon m="2" ml="3" size="6" color="gray.400"
+                as={icon.searchIcon()} />
           }
           InputRightElement={
-            <Icon m="2" mr="3" size="6" as={icon.cancelIcon('gray.400')}
-              onPress={handleSearchRemove} />
+            inputValue
+              ? <Icon m="2" mr="3" size="6" as={icon.cancelIcon('gray.400')}
+                onPress={handleRemove} />
+              : undefined
           }
+          onChangeText={(text) => dispatch(setInputValue(text))}
+          onSubmitEditing={handleSearch}
           returnKeyType="search"
-          onSubmitEditing={handleSearchSubmit}
-          onChangeText={text => dispatch(setInputValue(text))}
         />
       </View>
     </TouchableWithoutFeedback>
+  )
+}
+
+export const PopupSearchResults = ({ data }: any) => {
+
+  return (
+    <VStack mx='5'>
+      <Center>
+        <ScrollList data={data} />
+      </Center>
+    </VStack>
   )
 }
