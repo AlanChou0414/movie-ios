@@ -1,9 +1,10 @@
 import { TabBarButton } from "@Components/tabbar.component"
 import useIcon from "@Hooks/icon.hook"
 import { PATH } from "@Path"
-import HomeScreen from '@Screens/home'
 import MemberScreen from '@Screens/member'
+import MovieScreen from '@Screens/movie'
 import SearchScreen from '@Screens/search'
+import TvScreen from '@Screens/tv'
 import { styles } from "@Styles/styles"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
@@ -14,18 +15,29 @@ const TabBar = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={PATH.home}
+      initialRouteName={PATH.movies}
       screenOptions={{
         headerShown: false,
+        tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarActiveTintColor: "#fff",
       }}
     >
       <Tab.Screen
-        name={PATH.home}
-        component={HomeScreen}
+        name={PATH.movies}
+        component={MovieScreen}
         options={{
-          tabBarIcon: ({ color }) => (<Icon.homeIcon color={color} />),
+          tabBarIcon: ({ color }) => (<Icon.movieIcon color={color} />),
+          tabBarButton: (props) => (
+            <TabBarButton {...props} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={PATH.tv}
+        component={TvScreen}
+        options={{
+          tabBarIcon: ({ color }) => (<Icon.tvIcon color={color} />),
           tabBarButton: (props) => (
             <TabBarButton {...props} />
           ),
