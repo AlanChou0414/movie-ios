@@ -1,5 +1,6 @@
 import { TabBarButton } from "@Components/tabbar.component"
 import useIcon from "@Hooks/icon.hook"
+import { PATH } from "@Path"
 import HomeScreen from '@Screens/home'
 import MemberScreen from '@Screens/member'
 import { styles } from "@Styles/styles"
@@ -12,7 +13,7 @@ const TabBar = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName={PATH.home}
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
@@ -21,7 +22,7 @@ const TabBar = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name={PATH.home}
         component={HomeScreen}
         options={{
           tabBarIcon: () => (<Icon.homeIcon />),
@@ -31,7 +32,7 @@ const TabBar = () => {
         }}
       />
       {/* <Tab.Screen
-        name="Search"
+        name={PATH.search}
         component={SearchScreen}
         options={{
           tabBarIcon: () => (<Icon.tabSearchIcon />),
@@ -41,7 +42,7 @@ const TabBar = () => {
         }}
       /> */}
       <Tab.Screen
-        name="Member"
+        name={PATH.member}
         component={MemberScreen}
         options={{
           tabBarIcon: () => (<Icon.memberIcon />),

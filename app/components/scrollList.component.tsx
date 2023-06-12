@@ -1,13 +1,12 @@
 import { styles } from "@Styles/styles"
 import { IMG } from "@env"
 import { Box, FlatList, Heading } from "native-base"
-import { useCallback, useEffect, useState } from "react"
-import { ImageBackground, RefreshControl } from "react-native"
+import { useEffect, useState } from "react"
+import { ImageBackground } from "react-native"
 import { Loading } from "./loading.component"
 
-export const ScrollList = ({ data }: any) => {
+export const ScrollList = ({ data, horizontal }: any) => {
   const [list, setList] = useState<ResultProps>()
-  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,21 +16,14 @@ export const ScrollList = ({ data }: any) => {
     fetchData()
   }, [data])
 
-  //TODO: refresh to get new data
-  const onRefresh = useCallback(() => {
-    setRefreshing(true)
-    setTimeout(() => {
-      setRefreshing(false)
-    }, 2000)
-  }, [])
-
   if (!list?.results) return <Loading />
 
   return (
     <FlatList
       data={list?.results}
+      horizontal={horizontal}
       renderItem={({ item }) => (
-        <Box alignItems="center" mt="5">
+        <Box alignItems="center" m="3">
           <ImageBackground source={{
             uri: `${item.backdrop_path ? IMG + item.backdrop_path : 'https://fakeimg.pl/300x200/CCC'}`
           }}
@@ -40,7 +32,7 @@ export const ScrollList = ({ data }: any) => {
               background="muted.600:alpha.50" left="0" right="0"
               py="2" alignItems="center"
             >
-              <Heading size="lg" color="muted.50"
+              <Heading size="md" color="muted.50"
                 numberOfLines={1} ellipsizeMode="tail">
                 {item.name || item.title}
               </Heading>
@@ -54,7 +46,6 @@ export const ScrollList = ({ data }: any) => {
       )}
       keyExtractor={item => item?.id.toString()}
       showsVerticalScrollIndicator={false}
-      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     />
   )
 }
