@@ -21,7 +21,7 @@ const useAlert = () => {
           </Box>
         )
       },
-      duration: 1500,
+      duration: 2000,
       placement: "top"
     })
   }
@@ -41,7 +41,7 @@ const useAlert = () => {
           </Box>
         )
       },
-      duration: 1500,
+      duration: 2000,
       placement: "top"
     })
   }
@@ -61,7 +61,7 @@ const useAlert = () => {
           </Box>
         )
       },
-      duration: 1500,
+      duration: 2000,
       placement: "top"
     })
   }

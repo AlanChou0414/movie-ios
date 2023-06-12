@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { ImageBackground } from "react-native"
 import { Loading } from "./loading.component"
 
-export const ScrollList = ({ data, horizontal }: any) => {
+export const ScrollList = ({ data, horizontal, w, h }: any) => {
   const [list, setList] = useState<ResultProps>()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const ScrollList = ({ data, horizontal }: any) => {
           <ImageBackground source={{
             uri: `${item.backdrop_path ? IMG + item.backdrop_path : 'https://fakeimg.pl/300x200/CCC'}`
           }}
-            alt={item.name || item.title} style={styles.backImg} resizeMode="cover">
+            alt={item.name || item.title} style={{ width: w, height: h, ...styles.backImg }} resizeMode="cover">
             <Box position="absolute" bottom="0"
               background="muted.600:alpha.50" left="0" right="0"
               py="2" alignItems="center"

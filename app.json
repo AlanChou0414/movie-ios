@@ -7,8 +7,7 @@
     "icon": "./assets/img/movie.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "contain"
     },
     "assetBundlePatterns": [
       "**/*"

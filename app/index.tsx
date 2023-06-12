@@ -6,12 +6,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
 
 const Root = () => {
+
   return (
     <Provider store={store}>
       <NativeBaseProvider>
-        <StatusBar barStyle="dark-content" />
-        <NavigationContainer>
-          <SafeAreaProvider>
+        <StatusBar barStyle="light-content" />
+        <NavigationContainer >
+          <SafeAreaProvider >
             <TabBar />
           </SafeAreaProvider>
         </NavigationContainer>

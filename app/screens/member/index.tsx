@@ -8,7 +8,7 @@ const PageMain = () => {
     <SafeAreaView style={styles.flex}>
       <Center>
         <Box alignItems="center" >
-          <Heading>會員</Heading>
+          <Heading size="xl" mt="3" color="light.100">會員</Heading>
         </Box>
       </Center>
     </SafeAreaView >
