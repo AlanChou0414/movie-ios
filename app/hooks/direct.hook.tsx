@@ -7,9 +7,11 @@ const useDirect = () => {
 
   return {
     goBack: () => navigation.goBack(),
-    goHome: () => navigation.dispatch(jumpToAction(PATH.home)),
+    goMovie: () => navigation.dispatch(jumpToAction(PATH.movies)),
+    goTv: () => navigation.dispatch(jumpToAction(PATH.tv)),
     goMember: () => navigation.dispatch(jumpToAction(PATH.member)),
     goSearch: () => navigation.dispatch(jumpToAction(PATH.search)),
+
   }
 }
 

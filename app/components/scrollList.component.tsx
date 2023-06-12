@@ -46,6 +46,7 @@ export const ScrollList = ({ data, horizontal, w, h }: any) => {
       )}
       keyExtractor={item => item?.id.toString()}
       showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
     />
   )
 }

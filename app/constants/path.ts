@@ -1,5 +1,6 @@
 export const PATH = {
-  home: 'Home',
+  movies: 'Movies',
+  tv: 'Tv',
   search: 'Search',
   member: 'Member'
 }
