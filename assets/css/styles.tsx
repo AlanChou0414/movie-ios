@@ -3,30 +3,21 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    backgroundColor: 'none'
+    backgroundColor: '#18181b',
   },
   backImg: {
-    width: 250,
-    height: 180,
-    position: "relative",
     borderRadius: 20,
     overflow: "hidden",
   },
   tabBarStyle: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 25,
-    left: 30,
-    right: 30,
-    backgroundColor: "#262626cc",
+    left: 25,
+    right: 25,
+    backgroundColor: "#27272ae6",
     borderRadius: 25,
     height: 70,
-    shadowColor: "#000000",
-    shadowRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 10
-    },
-    shadowOpacity: .8,
+    borderTopWidth: 0
   },
   tabBarItemStyle: {
     flex: 1,

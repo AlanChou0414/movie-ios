@@ -14,9 +14,9 @@ const useIcon = () => {
     cancelIcon: (color: string) => icon(MaterialIcons, 'cancel', color, 5),
     searchIcon: (color?: string, size?: number) => icon(MaterialIcons, 'search', color, size),
     micIcon: () => icon(MaterialIcons, 'mic'),
-    homeIcon: () => icon(AntDesign, 'home', '#fff', 8),
-    tabSearchIcon: () => icon(Feather, 'search', '#fff', 8),
-    memberIcon: () => icon(AntDesign, 'user', '#fff', 8)
+    homeIcon: ({ color }: any) => icon(AntDesign, 'home', color, 8),
+    tabSearchIcon: ({ color }: any) => icon(Feather, 'search', color, 8),
+    memberIcon: ({ color }: any) => icon(AntDesign, 'user', color, 8)
   }
 }
 

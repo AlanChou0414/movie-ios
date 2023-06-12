@@ -1,3 +1,4 @@
+import { Loading } from '@Components/loading.component'
 import { ScrollList } from '@Components/scrollList.component'
 import { SearchBar } from '@Components/search.component'
 import useApi from '@Hooks/api.hook'
@@ -11,7 +12,6 @@ import { useSelector } from 'react-redux'
 const PageMain = () => {
   const api = useApi()
   const search = useSelector((state: RootType) => state.Search)
-  const inputValue = useSelector((state: RootType) => state.Form)
   const [allSearch, setAllSearch] = useState<ResultProps>()
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const PageMain = () => {
     fetchData()
   }, [search])
 
+  if (!allSearch) return <Loading />
 
   return (
     <SafeAreaView style={styles.flex}>
@@ -30,13 +31,13 @@ const PageMain = () => {
         <Box alignItems="center">
           {
             search.page
-              ? <ScrollList data={search} />
+              ? <ScrollList data={search} w={300} h={200} />
               : (
                 <>
-                  <Heading size="xl" mt="3" letterSpacing="3">
+                  <Heading size="xl" mt="3" color="light.100">
                     熱門搜尋
                   </Heading>
-                  <ScrollList data={allSearch} />
+                  <ScrollList data={allSearch} w={300} h={200} />
                 </>
               )
           }
